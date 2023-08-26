@@ -1,19 +1,22 @@
 #!/bin/sh
 
-# Authored by Arthur Manske
+#***
+#*** Authored by Arthur Manske
 #*** Thinked to Work in Alpine with Sway ***
 #*** This initializer depends on dbus, on a working shell and on a working WM ***
-# LICENSE: Unlicense 
+#*** LICENSE:
+#*** The Unlicense
+#***
 
 WM_BASENAME="wm.initialize"
 WM_PATH=""
 
 xdg_config_path() {
-  WM_PATH=$(cat "$XDG_HOME_CONFIG/$WM_BASENAME")
+  WM_PATH="$XDG_HOME_CONFIG/$WM_BASENAME"
 }
 
 etc_config_path() {
-  WM_PATH=$("/etc/$WM_BASENAME")
+  WM_PATH="/etc/$WM_BASENAME"
 }
 
 getconf() {
@@ -24,7 +27,7 @@ getconf() {
   else
     
     etc_config_path
-    if [-f "$WM_PATH" ]; then
+    if [ -f "$WM_PATH" ]; then
       cat "$WM_PATH"
     fi
     
